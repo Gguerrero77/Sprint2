@@ -1,2 +1,1 @@
-# Sprint2
-Tarea S2-1
+Entrega de prácticas de subconsultas en el Sprint 2 de la Especialización en analisis de datos de Barcelona Activa
