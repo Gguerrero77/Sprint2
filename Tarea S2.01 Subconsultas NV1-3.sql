@@ -31,7 +31,7 @@ el monto de las mismas y el id de la operación, datos estos que se consideran r
 cuáles son los registros faltantes.*/
 SELECT (SELECT Company_Name FROM company WHERE id = t.company_id) AS Company, id AS Op_Id, Amount, timestamp AS Date, Declined
 FROM transaction t
-WHERE company_id in (SELECT id from company) 
+WHERE company_id in (SELECT id from company)
 HAVING Company LIKE "C%";
 
 /*Tarea S2.01. Subconsultas - MySQL
@@ -65,7 +65,7 @@ Se nos ha solicitado informar el nombre de la empresa que ha realizado la operac
 se ha tenido en cuenta solo las operaciones efectivamente realizadas y como resultado se genera una tabla con un único registro.*/
 SELECT (SELECT company_name from company where id = t.company_id) AS Company, t.Amount
 FROM transaction t 
-WHERE t.amount = (SELECT MAX(t.Amount) 
+WHERE amount = (SELECT MAX(Amount) 
 					FROM transaction t);
 
 
@@ -78,9 +78,9 @@ y como resultado se genera una tabla con 13 registros.*/
 
 SELECT (SELECT Country FROM company where id = t.company_id) AS Country, format(avg(t.Amount), 2) AS Media
 FROM transaction t
-WHERE t.Amount > (SELECT AVG(t.Amount) 
-					FROM transaction t)
 GROUP BY Country
+HAVING AVG(Amount) > (SELECT AVG(t.Amount) 
+					FROM transaction t)
 ORDER BY Media;
 
 /*Tarea S2.01. Subconsultas - MySQL
